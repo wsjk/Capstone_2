@@ -11,9 +11,9 @@ The boom of e-commerce has resulted in online retailers servicing millions of cu
 <summary><h1>The Problem</h1></summary>
 <p>
   
-Online retailers have giant customer pools and customers often share similar traits. There may be, however, a better way to identify customers than simply grouping them by their location. Customers are a source of revenue and it would be more advantageous to segment customers based on metrics that are associated with direct profit. 
+Online retailers have enormous customer pools and customers often share similar traits. There may be, however, a better way to identify customers than simply grouping them by their location. Customers are a source of revenue and it would be more advantageous to segment customers based on metrics that are associated with direct profit. 
 
-How can we identify the "best" customers? 
+How can we identify the *best* customers? 
 
 </p>
 </details>
@@ -67,11 +67,10 @@ The table after pivoting:
 |     cid2    |   0   |  139.95 |  239.9   |         360.64       | 1062.31 | 892.72|   366.22    |      0       |
 |     cid3    | 799.9 | 2612.06 |  375.96  |           0          | 4256.53 |   0   |     0       |  1235.27     |
 
-If a customer did not make any purchases for a given `product_type`, they are given a `0` value. The same process is applied to the other raw data tables. The pivoted tables are joined together on the `customer_id` key to create a dataset formatted for analysis.
+There are a total of 21 distinct product types. If a customer did not make any purchases for a given `product_type`, a `0` value is used. The same process is applied to the other raw data tables. The pivoted tables are joined together on the `customer_id` key to create a dataset formatted for analysis.
 
-Furthermore, the data was pivoted so that each row represented information on a single customer. Using the `pivot_table` method in `pandas` resulted in numerous `null` values and they were replaced with `0`. The data was further reduced to only customers with a billing address located in the US. All customers in the data had at least one order prior to connecting with an account manager.
+Furthermore, the data was pivoted so that each row represented information on a single customer. Using the `pivot_table` method in `pandas` resulted in numerous `null` values and they were replaced with `0`. The data was further reduced to only customers with a billing address located in the US. 
       
-Data on orders and sales per Product Type for each customer included some `null` values for Product Type. This occurred when a given item a customer purchased did not fall into a known Product Type category. All `null` values due to this situation were dropped.
 </p>
 </details>
       
