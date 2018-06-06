@@ -32,6 +32,8 @@ Customer data has been obtained from an online retailer. The dataset is provided
 * Customer shipping and billing zip code
 * Cohort for each account manger
 
+Per the request of the data provider, sensitive information regarding actual numbers for sales and amount of customers were scrubbed. Only the relative amounts are allowed to be presented. The product type categories were replaced with dummy names. 
+
 Customer sales does exist from other sources (e.g. Kaggle, UCI Machine Learning Repository), but they do not come from companies that use a business model that utilizes personal account managers.
 
 </p>
@@ -81,7 +83,13 @@ The customer locations data was filtered to only include customers located in th
 <summary><h1>Exploratory Data Analysis</h1></summary>
 <p>
 
-![customer_distribution]
+The distribution of customer's in the sample per state is shown below:
+![customer_state_distribution]
+      
+      
+The overall distribution of customer sales per `product_type` is shown below:
+![customer_pt_distribution]
+
 </p>
 </details>
 
@@ -106,7 +114,5 @@ The customer locations data was filtered to only include customers located in th
 </p>
 </details>
 
-![pre_conn_md]
-
-[pre_conn_md]:https://github.com/wsjk/Capstone_2/blob/master/report/pre_conn_md.png
-[customer_distribution]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/customer_distribution.png
+[customer_state_distribution]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/customers_per_state.png
+[customer_pt_distribution]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/customer_distribution.png
