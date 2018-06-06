@@ -89,7 +89,7 @@ The customer locations data was filtered to only include customers located in th
       
 The distribution of customer's in the sample per state is shown below:
 
-![customer_state_distribution]
+![customer_state_distribution](/report/eda/customers_per_state.png?raw=true "")
 
 Majority of the customers in the dataset are located in `CA`, `CO`, `NY`, `UT`, `WA` and `TX`. Three of those states are ranked as the top 4 in the US Census Bureau's population ranking <sup><a href = https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population>[3]</a></sup>. It is interesting, however, to note that so many customers are also located in fairly low population states (`CO`,`UT`).
 
@@ -103,7 +103,7 @@ Majority of the customers in the dataset are located in `CA`, `CO`, `NY`, `UT`, 
       
 The overall distribution of customer sales per `product_type` is shown below:
 
-![customer_pt_distribution]
+![customer_pt_distribution](/report/eda/customer_distribution.png?raw=true "")
 
 The distribution shows that products from type `B` are the most expensive as very few customers have purchased from that category, but it has generated the most sales. Conversely, `A` and `F` products appear to be cheaper items due to the discrepancy from number of customers who have purhcased it and the sales generated.
 
@@ -116,7 +116,7 @@ The distribution shows that products from type `B` are the most expensive as ver
 
 The distribution of orders and sales per fiscal quarter is shown below:
 
-![qtr_distribution]
+![qtr_distribution](/report/eda/quarter_distribution.jpg?raw=True "")
 
 
 
@@ -126,9 +126,9 @@ The distribution of orders and sales per fiscal quarter is shown below:
 
 A heatmap of Pearson correlation coefficients calculated for a set of features is shown below:
 
-![pt_heatmap]
+![pt_heatmap](/report/eda/heatmap.png?raw=True "")
 
-The feature set consists of the 21 categories of `product_type`, amount of sales per fiscal quarter (e.g. `Q1_sales`), and amount of orders per fiscal quarter (e.g., `Q2_orders).
+The feature set consists of the 21 categories of `product_type`, amount of sales per fiscal quarter (e.g. `Q1_sales`), and amount of orders per fiscal quarter (e.g., `Q2_orders`).
 
 
 
@@ -159,7 +159,4 @@ The feature set consists of the 21 categories of `product_type`, amount of sales
 </p>
 </details>
 
-[customer_state_distribution]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/customers_per_state.png
-[customer_pt_distribution]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/customer_distribution.png
-[qtr_distribution]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/quarter_distribution.png
-[pt_heatmap]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/heatmap.png
+
