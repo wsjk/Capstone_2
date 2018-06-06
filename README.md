@@ -2,7 +2,7 @@
 <summary><h1>The Client</h1></summary>
 <p>
       
-The boom of e-commerce has resulted in online retailers servicing millions of customers. Retaining customers so that they continue purchasing on their site requires specialized marketing techniques. It is not feasible, however, to use marketing techniques specific to each individual customer. If the customer pool can be segmented into smaller groups, then the time required to develop effective marketing techniques can be reduced.
+The boom of e-commerce has resulted in online retailers servicing billions of customers <sup><a href = https://www.statista.com/statistics/251666/number-of-digital-buyers-worldwide/>[1]</a></sup>. Furthermore, it is also estimated that 96% of Americans shop online <sup><a href = http://www.cpcstrategy.com/blog/2017/05/ecommerce-statistics-infographic/>[2]</a></sup>. With so many options in the realm of online shopping, a major goal in e-commerce is customer retention. A common approach to achieving this is through specialized marketing techniques. It is not feasible, however, to develop marketing techniques specific to each individual customer. If the customer pool can be segmented into smaller groups, then the time required to develop effective marketing techniques can be reduced -- which is why it is important for companies to truly understand their customers.
 
 </p>
 </details>
@@ -83,15 +83,60 @@ The customer locations data was filtered to only include customers located in th
 <summary><h1>Exploratory Data Analysis</h1></summary>
 <p>
 
+<details>
+<summary><h2>Customer Location</h1></summary>
+<p>
+      
 The distribution of customer's in the sample per state is shown below:
+
 ![customer_state_distribution]
-      
-      
-The overall distribution of customer sales per `product_type` is shown below:
-![customer_pt_distribution]
+
+Majority of the customers in the dataset are located in `CA`, `CO`, `NY`, `UT`, `WA` and `TX`. Three of those states are ranked as the top 4 in the US Census Bureau's population ranking <sup><a href = https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population>[3]</a></sup>. It is interesting, however, to note that so many customers are also located in fairly low population states (`CO`,`UT`).
 
 </p>
 </details>
+
+
+<details>
+<summary><h2>Product Type</h1></summary>
+<p>
+      
+The overall distribution of customer sales per `product_type` is shown below:
+
+![customer_pt_distribution]
+
+The distribution shows that products from type `B` are the most expensive as very few customers have purchased from that category, but it has generated the most sales. Conversely, `A` and `F` products appear to be cheaper items due to the discrepancy from number of customers who have purhcased it and the sales generated.
+
+</p>
+</details>
+
+<details>
+<summary><h2>Seasonality</h1></summary>
+<p>
+
+The distribution of orders and sales per fiscal quarter is shown below:
+
+![qtr_distribution]
+
+
+
+</p>
+</details>
+
+
+A heatmap of Pearson correlation coefficients calculated for a set of features is shown below:
+
+![pt_heatmap]
+
+The feature set consists of the 21 categories of `product_type`, amount of sales per fiscal quarter (e.g. `Q1_sales`), and amount of orders per fiscal quarter (e.g., `Q2_orders).
+
+
+
+
+</p>
+</details>
+
+
 
 <details>
 <summary><h1>Customer Segmentation</h1></summary>
@@ -116,3 +161,5 @@ The overall distribution of customer sales per `product_type` is shown below:
 
 [customer_state_distribution]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/customers_per_state.png
 [customer_pt_distribution]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/customer_distribution.png
+[qtr_distribution]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/quarter_distribution.png
+[pt_heatmap]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/heatmap.png
