@@ -70,15 +70,18 @@ The table after pivoting:
 There are a total of 21 distinct product types. If a customer did not make any purchases for a given `product_type`, a `0` value is used. The same process is applied to the other raw data tables. The pivoted tables are joined together on the `customer_id` key to create a dataset formatted for analysis.
 
 Furthermore, the data was pivoted so that each row represented information on a single customer. Using the `pivot_table` method in `pandas` resulted in numerous `null` values and they were replaced with `0`. The data was further reduced to only customers with a billing address located in the US. 
-      
+
+The customer locations data was filtered to only include customers located in the US. The data contains a state abbreviations column that had to be cleaned to deal with situations like:
+* inconsistencies in upper and lower case abbrevations
+* full state name used instead of abbrevations
 </p>
 </details>
       
-
 <details>
 <summary><h1>Exploratory Data Analysis</h1></summary>
 <p>
-    
+
+![customer_distribution]
 </p>
 </details>
 
@@ -106,3 +109,4 @@ Furthermore, the data was pivoted so that each row represented information on a 
 ![pre_conn_md]
 
 [pre_conn_md]:https://github.com/wsjk/Capstone_2/blob/master/report/pre_conn_md.png
+[customer_distribution]:https://github.com/wsjk/Capstone_2/tree/master/report/eda/customer_distribution.png
