@@ -198,6 +198,7 @@ The dataset was processed using PCA with 21 components prior to applying `MiniBa
 
 Plots of the predicted labels of the dataset from `MiniBatchKMeans` are provided below. The 2-D plots show pairs of principcal components in sequential order.
 
+![kmeans](/report/clustering/KMEANS.jpg?raw=true "")
 
 </p>
 </details>
@@ -211,6 +212,7 @@ Plots of the predicted labels of the dataset from `MiniBatchKMeans` are provided
 
       DBSCAN is a density based algorithm – it assumes clusters for dense regions. It is also the first actual clustering algorithm we’ve looked at: it doesn’t require that every point be assigned to a cluster and hence doesn’t partition the data, but instead extracts the ‘dense’ clusters and leaves sparse background classified as ‘noise’.
 
+![dbscan](/report/clustering/DBSCAN.jpg?raw=true "")
 
 </p>
 </details>
