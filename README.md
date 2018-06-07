@@ -84,7 +84,7 @@ The customer locations data was filtered to only include customers located in th
 <p>
       
 The code to conduct the analysis presented in this section can be found in  
-[notebooks/eda_for_customers.ipynb](/notebooks/eda_for_customers.ipynb)
+[eda_for_customers.ipynb](/notebooks/eda_for_customers.ipynb)
 
 <details>
 <summary><h2>Customer Location</h1></summary>
@@ -167,6 +167,9 @@ A closer look at the state with the most customers (`CA`) shows that products fr
 <details>
 <summary><h1>Customer Segmentation</h1></summary>
 <p>
+      
+The code to conduct the unsupervised learning and clustering analysis presented in this section can be found in  
+[clustering.ipynb](/notebooks/clustering.ipynb)
 
 <details>
 <summary><h2>Processing Data</h2></summary>
