@@ -89,7 +89,7 @@ The customer locations data was filtered to only include customers located in th
       
 The distribution of customer's in the sample per state is shown below:
 
-![customer_state_distribution](/report/eda/customers_per_state.png?raw=true "")
+![customer_state_distribution](/report/eda/customers_per_state.png?raw=True "")
 
 Majority of the customers in the dataset are located in `CA`, `CO`, `NY`, `UT`, `WA` and `TX`. Three of those states are ranked as the top 4 in the US Census Bureau's population ranking <sup><a href = https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population>[3]</a></sup>. It is interesting, however, to note that so many customers are also located in fairly low population states (`CO`,`UT`).
 
@@ -118,13 +118,40 @@ The distribution of orders and sales per fiscal quarter is shown below:
 
 ![qtr_distribution](/report/eda/quarter_distribution.jpg?raw=True "")
 
+As expected, the states with the most customers have the highest orders and sales per quarter. Although, both `CO` and `UT` customers outperform `NY` every quarter despite a smaller customer pool -- which may indicate that `CO` and `UT` customers are more valuable than `NY` customers.
 
-A heatmap of Pearson correlation coefficients calculated for a set of features is shown below:
+It is also interesting to note is that `Q2_orders` total is significantly higher for `NY` than every other state by a wide margin. This did not directly translate to higher sales in the plot for `Q2_sales`. The discrepancy in `Q2_orders` and `Q2_sales` can be attributed to `NY` customers buying less expensive items.
+
+</p>
+</details>
+
+<details>
+<summary><h2>Feature Correlation</h1></summary>
+<p>
+      
+A heatmap of Pearson correlation coefficients calculated for the dataset is shown below:
 
 ![pt_heatmap](/report/eda/heatmap.png?raw=True "")
 
-The feature set consists of the 21 categories of `product_type`, amount of sales per fiscal quarter (e.g. `Q1_sales`), and amount of orders per fiscal quarter (e.g., `Q2_orders`).
+The feature set consists of the 21 categories of `product_type`, amount of sales per fiscal quarter (e.g. `Q1_sales`), and amount of orders per fiscal quarter (e.g., `Q2_orders`). Majority of the features have positive, but weak linear correlation to each other. There are some instances of high correlation between `product_type`s (e.g. `F` and `G`) which can be interpreted as `product_type`s that customers often buy together. 
 
+There are also several examples of higher correlation coefficients between `product_type` and quarterly orders/sales (e.g., `F` and `Q3_orders`) which indicate that customers who buy in Q3 often buy items from `F`.
+
+Fairly strong correlation is aso observed among quarterly sales. The highest correlation coefficients among all features can be found between `Q4_sales` and `Q1_sales`. This could possibly be due to customers buying gifts for the holiday season in `Q4` and having to make gift exchanges in `Q1` --  and exchange orders would count as a new sale.
+
+A bubble chart showing the relationship between `product_type`, `state`, number of customers, and sales is shown below
+
+![bubbles](/report/eda/product_type_state_color.png?raw=True "")
+
+The color of the markers represent the number of unique customers that have purchased given a `product_type` and `state`. The size of the markers represent the average of the sales made by those same customers. 
+
+The bubble chart shows that the most popular `product_type`s -- based on number of customers who have purchased them -- are `A`,`F`,`K`,`Q`, and `T` for most locations. The most sales are generated from `product_type` `E` have across all almost states. 
+
+Specific `product_type`s are much popular in certain states than others. It appears that customers from military addresses (`AE`) have generated the  most sales for `D` type products. While customers in Guam (`GU`) have spent the most money on `C`, `D` and `B`. Products from `H` and `K` are quite popular among customers in the Northern Mariana Islands and Virgin Islands (`VI`) customers are fond of `Q` items.
+
+A closer look at the state with the most customers (`CA`) shows that products from `K` have been bought from the most customers and also generated the most total sales. 
+
+![CA](/report/eda/product_type_per_state/product_type_hist_for_CA.png?raw=True "")
 
 </p>
 </details>
