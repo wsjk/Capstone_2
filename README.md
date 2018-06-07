@@ -164,11 +164,58 @@ A closer look at the state with the most customers (`CA`) shows that products fr
 </details>
 
 
-
 <details>
 <summary><h1>Customer Segmentation</h1></summary>
 <p>
-    
+
+<details>
+<summary><h2>Processing Data</h2></summary>
+<p>
+      
+An unsupervised learning approach is used to conduct customer segmentation. The goal is to use clustering algorithms to be able to segment customers into informative groups.
+
+The dataset is kept to continuous numerical features: the `product_type`s, quarterly sales and orders. The data is scaled using the `StandardScaler()` method from `sci-kit learn` library. After scaling the data, Principal Components Analysis (PCA) is applied to the dataset. The resulting `explained_variance_ratio` from PCA is:
+
+|    PCA0   |    PCA1   |    PCA2    |    PCA3    |    PCA4    |    PCA5    |    PCA6    |    PCA7    |    PCA8    |    PCA9    |    PCA10   |    PCA11   |    PCA12   |    PCA13   |    PCA14   |    PCA15   |    PCA16   |    PCA17  |    PCA18   |    PCA19   |    PCA20   |    PCA21   |    PCA22   |    PCA23   |    PCA24   |    PCA25   |    PCA26   |    PCA27   | PCA28 |
+|-----------|-----------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|-----------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|-------|
+| 0.2284605 | 0.2893555 | 0.34382091 | 0.39476022 | 0.43490012 | 0.47336997 | 0.50902827 | 0.54393445 | 0.57858124 | 0.61295025 | 0.64680443 | 0.68018976 | 0.71259298 | 0.74354075 | 0.77250861 | 0.79802764 | 0.82239615 | 0.8442303 | 0.86501432 | 0.88359106 | 0.90179775 | 0.91936953 | 0.93643075 | 0.95107138 | 0.96453712 | 0.97538785 | 0.98470915 | 0.99278416 |  1.0  |
+
+There are 29 features in the dataset and after conducting PCA, it takes 21 principial components to explain at least 90% of the variance in the data.
+
+</p>
+</details>
+
+
+<details>
+<summary><h2>KMeans Clustering</h2></summary>
+<p>
+      
+For the first attempt at clustering, `MiniBatchKMeans` algorithm is used from the `sci-kit learn` library due to limited time and resources. From `sci-kit learn` documentation <sup><a href = http://scikit-learn.org/stable/modules/clustering.html#mini-batch-kmeans>[3]</a></sup>:
+      
+      The MiniBatchKMeans is a variant of the KMeans algorithm which uses mini-batches to reduce the computation time, while still attempting to optimise the same objective function. Mini-batches are subsets of the input data, randomly sampled in each training iteration. These mini-batches drastically reduce the amount of computation required to converge to a local solution. 
+
+The dataset was processed using PCA with 21 components prior to applying `MiniBatchKMeans`. The number of clusters was set to `6` for the clustering analysis.
+
+Plots of the predicted labels of the dataset from `MiniBatchKMeans` are provided below. The 2-D plots show pairs of principcal components in sequential order.
+
+
+</p>
+</details>
+
+
+<details>
+<summary><h2>DBSCAN</h2></summary>
+<p>
+      
+`DBSCAN` algorithm from `sci-kit learn` is evaluated on its ability to cluster customers. Compared to `KMeans`, one of the advantages of using `DBSCAN` is that the number of clusters does not have to be pre-defined. Furthermore, `DBSCAN` performs better for data that may not conform to globular chunks<sup><a href = http://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html>[4]</a></sup>:
+
+      DBSCAN is a density based algorithm – it assumes clusters for dense regions. It is also the first actual clustering algorithm we’ve looked at: it doesn’t require that every point be assigned to a cluster and hence doesn’t partition the data, but instead extracts the ‘dense’ clusters and leaves sparse background classified as ‘noise’.
+
+
+</p>
+</details>
+
+
 </p>
 </details>
 
