@@ -92,7 +92,7 @@ The code to conduct the analysis presented in this section can be found in
       
 The distribution of customer's in the sample per state is shown below:
 
-![customer_state_distribution](/report/eda/customers_per_state.png?raw=True "")
+![customer_state_distribution](Capstone_2/report/eda/customers_per_state.png?raw=True "")
 
 Majority of the customers in the dataset are located in `CA`, `CO`, `NY`, `UT`, `WA` and `TX`. Three of those states are ranked as the top 4 in the US Census Bureau's population ranking <sup><a href = https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population>[3]</a></sup>. It is interesting, however, to note that so many customers are also located in fairly low population states (`CO`,`UT`).
 
