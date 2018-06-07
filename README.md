@@ -119,11 +119,6 @@ The distribution of orders and sales per fiscal quarter is shown below:
 ![qtr_distribution](/report/eda/quarter_distribution.jpg?raw=True "")
 
 
-
-</p>
-</details>
-
-
 A heatmap of Pearson correlation coefficients calculated for a set of features is shown below:
 
 ![pt_heatmap](/report/eda/heatmap.png?raw=True "")
@@ -131,6 +126,8 @@ A heatmap of Pearson correlation coefficients calculated for a set of features i
 The feature set consists of the 21 categories of `product_type`, amount of sales per fiscal quarter (e.g. `Q1_sales`), and amount of orders per fiscal quarter (e.g., `Q2_orders`).
 
 
+</p>
+</details>
 
 
 </p>
