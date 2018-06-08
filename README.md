@@ -201,7 +201,7 @@ The dataset was processed using PCA with 21 components prior to applying `MiniBa
 
 Plots of the predicted labels of the dataset from `MiniBatchKMeans` are provided below. The 2-D plots show pairs of principcal components in sequential order.
 
-![kmeans](/report/clustering/KMEANS.jpg?raw=true "")
+![kmeans](/report/clustering/kmeans.jpg?raw=true "")
 
 </p>
 </details>
