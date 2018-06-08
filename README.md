@@ -215,7 +215,11 @@ Plots of the predicted labels of the dataset from `MiniBatchKMeans` are provided
 
       DBSCAN is a density based algorithm – it assumes clusters for dense regions. It is also the first actual clustering algorithm we’ve looked at: it doesn’t require that every point be assigned to a cluster and hence doesn’t partition the data, but instead extracts the ‘dense’ clusters and leaves sparse background classified as ‘noise’.
 
+The parameters `eps` and `min_samples` are set to `0.2` and `7`, respectively. The results of the `DBSCAN` algorithm with the aforementioned parameter settings resulted in an estimate of 11 distinct clusters. Plots of the clusters for different pairs of principal components are shown below:
+
 ![dbscan](/report/clustering/DBSCAN.jpg?raw=true "")
+
+The `DBSCAN` algorithm appears to have performed better than `MiniBatchKMeans` based on visual inspection of the cluster plots. 
 
 </p>
 </details>
