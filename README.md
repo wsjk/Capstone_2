@@ -219,11 +219,41 @@ The parameters `eps` and `min_samples` are set to `0.2` and `7`, respectively. T
 
 ![dbscan](/report/clustering/DBSCAN.jpg?raw=true "")
 
-The `DBSCAN` algorithm appears to have performed better than `MiniBatchKMeans` based on visual inspection of the cluster plots. 
+The plots above only 10 of the 11 different clusters estimated by `DBSCAN`. The cluster labeled `-1` represents "noise" and was removed from the plot for clarity. A clear majority of the data was labeled `-1`. 
 
 </p>
 </details>
 
+<details>
+<summary><h2>Evaluating Clustering Algorithms</h2></summary>
+<p>
+
+The array of 2D plots of the PCA components show that the `DBSCAN` algorithm appears to have performed better at clustering the customer data. One of the disadvantages of `KMeans` algorithm is that it will always build clusters in globular shapes. 
+
+The plots of the `DBSCAN` results did not include `-1` labels -- which represent "noise" in the data. A network graph is created where customers and labels are nodes, and edges exist between customers and the labels generated from `DBSCAN`. A plot of the graph is shown below:
+
+![dbscan](/report/clustering/plotly1.png?raw=true "")
+
+It is clear that most of the data is either considered noise or labeled as `0`. The other 9 labels were applied to only a few customers each. A breakdown of the customers per label are provided below:
+
+| label | customers |
+|---|---|
+| -1 | 20039 |
+| 0	| 12140 |
+| 1 | 17 |
+| 2 | 52 |
+| 3 | 12 |
+| 4 | 8 |
+| 5 | 6 |
+| 6 | 10 |
+| 7 | 21 |
+| 8 | 9 |
+| 9 | 7 |
+| 10 | 7 |
+
+</p>
+</details>
+      
 
 </p>
 </details>
