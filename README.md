@@ -92,7 +92,7 @@ The code to conduct the analysis presented in this section can be found in
       
 The distribution of customer's in the sample per state is shown below:
 
-![customer_state_distribution](Capstone_2/report/eda/customers_per_state.png?raw=True "")
+![customer_state_distribution](/report/eda/customers_per_state.png?raw=True "")
 
 Majority of the customers in the dataset are located in `CA`, `CO`, `NY`, `UT`, `WA` and `TX`. Three of those states are ranked as the top 4 in the US Census Bureau's population ranking <sup><a href = https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population>[3]</a></sup>. It is interesting, however, to note that so many customers are also located in fairly low population states (`CO`,`UT`).
 
@@ -201,7 +201,7 @@ The dataset was processed using PCA with 21 components prior to applying `MiniBa
 
 Plots of the predicted labels of the dataset from `MiniBatchKMeans` are provided below. The 2-D plots show pairs of principcal components in sequential order.
 
-![kmeans](/report/clustering/KMEANS.jpg?raw=true "")
+![kmeans](/report/clustering/kmeans.jpg?raw=true "")
 
 </p>
 </details>
@@ -215,7 +215,11 @@ Plots of the predicted labels of the dataset from `MiniBatchKMeans` are provided
 
       DBSCAN is a density based algorithm – it assumes clusters for dense regions. It is also the first actual clustering algorithm we’ve looked at: it doesn’t require that every point be assigned to a cluster and hence doesn’t partition the data, but instead extracts the ‘dense’ clusters and leaves sparse background classified as ‘noise’.
 
+The parameters `eps` and `min_samples` are set to `0.2` and `7`, respectively. The results of the `DBSCAN` algorithm with the aforementioned parameter settings resulted in an estimate of 11 distinct clusters. Plots of the clusters for different pairs of principal components are shown below:
+
 ![dbscan](/report/clustering/DBSCAN.jpg?raw=true "")
+
+The `DBSCAN` algorithm appears to have performed better than `MiniBatchKMeans` based on visual inspection of the cluster plots. 
 
 </p>
 </details>
