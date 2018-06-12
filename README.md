@@ -240,7 +240,7 @@ The plots of the `DBSCAN` results did not include `-1` labels -- which represent
 
 ![dbscan](/report/clustering/plotly1.png?raw=true "")
 
-It is clear that most of the data is either considered noise or labeled as `0`. The other 9 labels were applied to only a few customers each. A breakdown of the customers per label are provided below:
+It is clear that most of the data is either considered noise or labeled as `0`. The other 10 labels were applied to only a few customers each. A breakdown of the customers per label are provided below:
 
 | label | customers |
 |---|---|
@@ -265,14 +265,7 @@ It is clear that most of the data is either considered noise or labeled as `0`. 
 </details>
 
 <details>
-<summary><h1>Network Analysis</h1></summary>
-<p>
-    
-</p>
-</details>
-
-<details>
-<summary><h1>Recommender System</h1></summary>
+<summary><h1>Conclusion</h1></summary>
 <p>
     
 </p>
