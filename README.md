@@ -94,7 +94,9 @@ The distribution of customer's in the sample per state is shown below:
 
 ![customer_state_distribution](/report/eda/customers_per_state.png?raw=True "")
 
-Majority of the customers in the dataset are located in `CA`, `CO`, `NY`, `UT`, `WA` and `TX`. Three of those states are ranked as the top 4 in the US Census Bureau's population ranking <sup><a href = https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population>[3]</a></sup>. It is interesting, however, to note that so many customers are also located in fairly low population states (`CO`,`UT`).
+Majority of the customers in the dataset are located in `CA`, `CO`, `NY`, `UT`, `WA` and `TX`. Three of those states are ranked as the top 4 in the US Census Bureau's population ranking <sup><a href = https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population>[3]</a></sup>. It is interesting, however, to note that so many customers are also located in fairly low population states (`CO`,`UT`). 
+
+Any efforts regarding marketing techniques should be focused on the states where the company already has the most customers.
 
 </p>
 </details>
@@ -110,6 +112,8 @@ The overall distribution of customer sales per `product_type` is shown below:
 
 The distribution shows that products from type `B` are the most expensive as very few customers have purchased from that category, but it has generated the most sales. Conversely, `A` and `F` products appear to be cheaper items due to the discrepancy from number of customers who have purhcased it and the sales generated.
 
+Marketing techniques should be focused on customers purchasing high cost items from `product_type`s such as `E`, `I`, `O`, `R` and `S`. 
+
 </p>
 </details>
 
@@ -124,6 +128,8 @@ The distribution of orders and sales per fiscal quarter is shown below:
 As expected, the states with the most customers have the highest orders and sales per quarter. Although, both `CO` and `UT` customers outperform `NY` every quarter despite a smaller customer pool -- which may indicate that `CO` and `UT` customers are more valuable than `NY` customers.
 
 It is also interesting to note is that `Q2_orders` total is significantly higher for `NY` than every other state by a wide margin. This did not directly translate to higher sales in the plot for `Q2_sales`. The discrepancy in `Q2_orders` and `Q2_sales` can be attributed to `NY` customers buying less expensive items.
+
+To take advantage of the trends in seasonality, marketing approaches need to target customers who have highest sales per customer (e.g. `UT` and `CO`). Furthermore, the timing of the marketing campaigns should advantage of the most profitable quarters for customers from each state.
 
 </p>
 </details>
