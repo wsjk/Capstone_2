@@ -174,8 +174,8 @@ A closer look at the state with the most customers (`CA`) shows that products fr
 <summary><h1>Customer Segmentation</h1></summary>
 <p>
       
-The code to conduct the unsupervised learning and clustering analysis presented in this section can be found in  
-[clustering.ipynb](/notebooks/clustering.ipynb)
+The code to conduct the unsupervised learning and clustering analysis presented in this section can be found in the 
+[notebooks](/notebooks/) directory.
 
 <details>
 <summary><h2>Processing Data</h2></summary>
@@ -196,30 +196,43 @@ There are 29 features in the dataset and after conducting PCA, it takes 21 princ
 
 
 <details>
-<summary><h2>KMeans Clustering</h2></summary>
+<summary><h2>K-Means Clustering</h2></summary>
 <p>
-      
-For the first attempt at clustering, `MiniBatchKMeans` algorithm is used from the `sci-kit learn` library due to limited time and resources. From `sci-kit learn` documentation <sup><a href = http://scikit-learn.org/stable/modules/clustering.html#mini-batch-kmeans>[3]</a></sup>:
+
+The code for running K-Means clustering can be found in the [KMeans.ipynb](/notebooks/KMeans.ipynb). The dataset was processed using PCA with 21 components prior to applying `MiniBatchKMeans`.
+
+As a baseline for clustering, the `MiniBatchKMeans` algorithm -- as opposed to `KMeans` -- is used from the `sci-kit learn` library due to limited time and resources. From `sci-kit learn` documentation <sup><a href = http://scikit-learn.org/stable/modules/clustering.html#mini-batch-kmeans>[3]</a></sup>:
       
       The MiniBatchKMeans is a variant of the KMeans algorithm which uses mini-batches to reduce the computation time, while still attempting to optimise the same objective function. Mini-batches are subsets of the input data, randomly sampled in each training iteration. These mini-batches drastically reduce the amount of computation required to converge to a local solution. 
 
-The dataset was processed using PCA with 21 components prior to applying `MiniBatchKMeans`. The number of clusters was set to `6` for the clustering analysis.
-
-Plots of the predicted labels of the dataset from `MiniBatchKMeans` are provided below. The 2-D plots show pairs of principcal components in sequential order.
+An example plot of the predicted labels of the dataset from `MiniBatchKMeans` for 6 clusters is provided below. The 2-D plots show pairs of principcal components in sequential order.
 
 ![kmeans](/report/clustering/kmeans.jpg?raw=true "")
+
+Attempts at evaluating K-Means clusters via silhouette analysis was not possible due to memory issues associated with the size of the dataset. Another common approach to determining the number of clusters for K-Means is the "elbow method"<sup><a href = https://github.com/rasbt/python-machine-learning-book>[4]</a></sup>. A plot of the `inertia_` attribute of the `MiniBatchKMeans` class shows no discernible elbow. 
+
+![elbow](/report/clustering/elbow.png?raw=true "")
+
+From visual inspection, the disadvantages of using KMeans on this dataset is clear. By minimizing distances, K-Means tends to partition the data into globular chunks as opposed to finding clusters<sup><a href = http://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html>[5]</a></sup>. Another disadvantage is that one must define the clusters in the beginning. From the elbow curve show earlier, it is not clear how many clusters should be used.
 
 </p>
 </details>
 
-
 <details>
 <summary><h2>DBSCAN</h2></summary>
 <p>
-      
-`DBSCAN` algorithm from `sci-kit learn` is evaluated on its ability to cluster customers. Compared to `KMeans`, one of the advantages of using `DBSCAN` is that the number of clusters does not have to be pre-defined. Furthermore, `DBSCAN` performs better for data that may not conform to globular chunks<sup><a href = http://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html>[4]</a></sup>:
+
+The code for running DBSCAN clustering can be found in the [DBSCAN.ipynb](/notebooks/DBSCAN.ipynb). The dataset was processed using PCA with 21 components prior to applying DBSCAN.
+
+`DBSCAN` algorithm from `sci-kit learn` is evaluated on its ability to cluster customers. Compared to K-Means, one of the advantages of using DBSCAN is that the number of clusters does not have to be pre-defined. Furthermore, DBSCAN performs better for data that may not conform to globular chunks<sup><a href = http://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html>[6]</a></sup>:
 
       DBSCAN is a density based algorithm – it assumes clusters for dense regions. It is also the first actual clustering algorithm we’ve looked at: it doesn’t require that every point be assigned to a cluster and hence doesn’t partition the data, but instead extracts the ‘dense’ clusters and leaves sparse background classified as ‘noise’.
+
+The `DBSCAN` algorithm requires two parameters: `eps` and `min_samples`. In DBSCAN, a point is considered a *core point* if there are a minimum number of points (`min_samples`) that fall within a specified radius (`eps`)<sup><a href = https://github.com/rasbt/python-machine-learning-book>[4]</a></sup>. A grid search to tune these parameters is conducted. The results of the grid search is shown below with the number of clusters estimated and the number of points considered noise.
+
+![grid_search](/report/clustering/grid_search.png?raw=true "")
+
+As expected, increasing `eps` reduces the number of clusters until they become one giant cluster including most of the data. Increasing `min_samples` also reduces the number of clusters while considering most of the data as noise. 
 
 The parameters `eps` and `min_samples` are set to `0.2` and `7`, respectively. The results of the `DBSCAN` algorithm with the aforementioned parameter settings resulted in an estimate of 11 distinct clusters. Plots of the clusters for different pairs of principal components are shown below:
 
@@ -231,7 +244,7 @@ The plots above only 10 of the 11 different clusters estimated by `DBSCAN`. The 
 </details>
 
 <details>
-<summary><h2>Evaluating Clustering Algorithms</h2></summary>
+<summary><h2>Comparing Clustering Algorithms</h2></summary>
 <p>
 
 The array of 2D plots of the PCA components show that the `DBSCAN` algorithm appears to have performed better at clustering the customer data. One of the disadvantages of `KMeans` algorithm is that it will always build clusters in globular shapes. 
