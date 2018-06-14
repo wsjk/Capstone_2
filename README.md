@@ -76,6 +76,9 @@ Furthermore, the data was pivoted so that each row represented information on a 
 The customer locations data was filtered to only include customers located in the US. The data contains a state abbreviations column that had to be cleaned to deal with situations like:
 * inconsistencies in upper and lower case abbrevations
 * full state name used instead of abbrevations
+
+Customer location, however, is not included in the feature set for the clustering algorithm. Location is considered more of a descriptive feature and it was thought best to avoid possibility of simply clustering customers by their location. From the perspective of the client, a customer's location should not necessarily be important. The goal of finding the most valuable customer should be based on metrics related to sales.
+
 </p>
 </details>
       
@@ -209,11 +212,11 @@ An example plot of the predicted labels of the dataset from `MiniBatchKMeans` fo
 
 ![kmeans](/report/clustering/kmeans.jpg?raw=true "")
 
-Attempts at evaluating K-Means clusters via silhouette analysis was not possible due to memory issues associated with the size of the dataset. Another common approach to determining the number of clusters for K-Means is the "elbow method"<sup><a href = https://github.com/rasbt/python-machine-learning-book>[4]</a></sup>. A plot of the `inertia_` attribute of the `MiniBatchKMeans` class shows no discernible elbow. 
+Attempts at evaluating K-Means clusters via silhouette analysis was not possible due to memory issues associated with the size of the dataset. Another common approach to determining the number of clusters for K-Means is the "elbow method"<sup><a href = https://github.com/rasbt/python-machine-learning-book>[4]</a></sup>. A plot of the `inertia_` attribute of the `MiniBatchKMeans` class, however, shows no discernible elbow. 
 
 ![elbow](/report/clustering/elbow.png?raw=true "")
 
-From visual inspection, the disadvantages of using KMeans on this dataset is clear. By minimizing distances, K-Means tends to partition the data into globular chunks as opposed to finding clusters<sup><a href = http://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html>[5]</a></sup>. Another disadvantage is that one must define the clusters in the beginning. From the elbow curve show earlier, it is not clear how many clusters should be used.
+From visual inspection, the disadvantages of using KMeans on this dataset are clear. By minimizing distances, K-Means tends to partition the data into globular chunks as opposed to finding clusters<sup><a href = http://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html>[5]</a></sup>. Another disadvantage is that one must define the clusters in the beginning. From the elbow curve shown earlier, it is not clear how many clusters should be used.
 
 </p>
 </details>
@@ -232,43 +235,54 @@ The `DBSCAN` algorithm requires two parameters: `eps` and `min_samples`. In DBSC
 
 ![grid_search](/report/clustering/grid_search.png?raw=true "")
 
-As expected, increasing `eps` reduces the number of clusters until they become one giant cluster including most of the data. Increasing `min_samples` also reduces the number of clusters while considering most of the data as noise. 
-
-The parameters `eps` and `min_samples` are set to `0.2` and `7`, respectively. The results of the `DBSCAN` algorithm with the aforementioned parameter settings resulted in an estimate of 11 distinct clusters. Plots of the clusters for different pairs of principal components are shown below:
+As expected, increasing `eps` reduces the number of clusters until they become one giant cluster including most of the data. Increasing `min_samples` also reduces the number of clusters while considering most of the data as noise. As a compromise between number of clusters and number of points considered noise, the final parameters are set to `1` and `5` for `eps` and `min_samples`, respectively. The 5 clusters estimated by `DBSCAN` are plotted below, but with the noise points removed for clarity. Each subplot represents different pairs of principal components.
 
 ![dbscan](/report/clustering/DBSCAN.jpg?raw=true "")
 
-The plots above only 10 of the 11 different clusters estimated by `DBSCAN`. The cluster labeled `-1` represents "noise" and was removed from the plot for clarity. A clear majority of the data was labeled `-1`. 
+The plots show that a majority of clusters belong to same cluster (`0`) with very customers belonging to the remaining 4 clusters. A breakdown of the number of customers contained within each clusters, as well the number of customers considered noise (label = `-1`), are summarized below:
+
+| label | number of customers |
+|---|---|
+| -1 | 5804 |
+| 0	| 26503 |
+| 1 | 5 |
+| 2 | 4 |
+| 3 | 7 |
+| 4 | 5 |
 
 </p>
 </details>
 
 <details>
-<summary><h2>Comparing Clustering Algorithms</h2></summary>
+<summary><h2>Analzing Clusters</h2></summary>
 <p>
+      
+The code for analyzing the clustering results from DBSCAN can be found in the [analyze_clusters.ipynb](/notebooks/analyze_clusters.ipynb). The points considered noise are not included in the following analysis.
 
-The array of 2D plots of the PCA components show that the `DBSCAN` algorithm appears to have performed better at clustering the customer data. One of the disadvantages of `KMeans` algorithm is that it will always build clusters in globular shapes. 
+The array of 2D plots of the PCA components show that the `DBSCAN` algorithm appears to have performed better at clustering the customer data. One of the disadvantages of `KMeans` algorithm is that it will always build clusters in globular shapes. The plots of the `DBSCAN` results did not include `-1` labels -- which represent "noise" in the data. 
 
-The plots of the `DBSCAN` results did not include `-1` labels -- which represent "noise" in the data. A network graph is created where customers and labels are nodes, and edges exist between customers and the labels generated from `DBSCAN`. A plot of the graph is shown below:
+It is clear that most of the data is either considered noise or labeled as `0`. The other 5 labels were applied to only a few customers each. The distributions of customer locations for each cluster are shown below:
 
-![dbscan](/report/clustering/plotly1.png?raw=true "")
+![cluster_state](/report/clustering/cluster_by_state.jpg?raw=true "")
 
-It is clear that most of the data is either considered noise or labeled as `0`. The other 10 labels were applied to only a few customers each. A breakdown of the customers per label are provided below:
+The distributions of customers for the most populated clusters match the overall distribution of customers by location of the original dataset. This may reinforce the idea that customer location is not an important feature to consider if evaluating the value of a customer.
 
-| label | customers |
-|---|---|
-| -1 | 20039 |
-| 0	| 12140 |
-| 1 | 17 |
-| 2 | 52 |
-| 3 | 12 |
-| 4 | 8 |
-| 5 | 6 |
-| 6 | 10 |
-| 7 | 21 |
-| 8 | 9 |
-| 9 | 7 |
-| 10 | 7 |
+Plots of total sales and orders generated by customers for each cluster are shown below. As expected, customers labeled `0` have the highest totals since majority of the customers belong to this cluster.
+
+![total_qtr_sales](/report/clustering/total_quarterly_sales_clusters.jpg?raw=true "")
+
+![total_qtr_orders](/report/clustering/total_quarterly_orders_clusters.jpg?raw=true "")
+
+![total_prod_sales](/report/clustering/total_prod_sales_clusters.jpg?raw=true "")
+
+The average metrics for each cluster are a bit more interesting. 
+
+![avg_qtr_sales](/report/clustering/avg_quarterly_sales_clusters.jpg?raw=true "")
+
+![avg_qtr_orders](/report/clustering/avg_quarterly_orders_clusters.jpg?raw=true "")
+
+![avg_prod_sales](/report/clustering/avg_prod_sales_clusters.jpg?raw=true "")
+
 
 </p>
 </details>
