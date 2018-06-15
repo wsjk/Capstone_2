@@ -313,6 +313,12 @@ Boxplots of the customer metrics (e.g., sales, orders, and sales by product type
 <details>
 <summary><h1>Conclusion</h1></summary>
 <p>
+      
+Unsupervised techniques are applied to a dataset provided by an online retailer to conduct customer segmentation. The dataset contained a random sample of the companies customers. The original dataset contained total sales per quarter, total orders per quarter, and total sales per product type for each customer. Customer location was also available, but not included in the dataset. 
+
+The dataset was processed via pivoting to have each product type as a feature and each quarter as a feature for both sales and orders. The pivoted dataset now had 29 features: 21 product types, 4 quarters for sales, and 4 quarters for orders.
+
+K-Means was initially used to find clusters among the customer sample, but the structure  of the dataset did not lend itself well to the algorithm. DBSCAN was chosen as an alternative approach to segment the customers. A grid search was conducted to tune the hyperparameters of DBSCAN and the optimal setup resulted in an estimate of 5 clusters -- the remaining points were considered noise.
     
 </p>
 </details>
