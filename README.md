@@ -293,11 +293,13 @@ Plotting average sales per product type, the clusters appear to identify with pr
 
 ![avg_prod_sales](/report/clustering/avg_prod_sales_clusters.png?raw=true "")
 
-When looking at the boxplots,
+Boxplots of the customer metrics (e.g., sales, orders, and sales by product type) are shown below. The y-axes have been normalized for the group of subplots within each metric. When looking at the boxplots for sales and orders for each cluster, it seems like the most valuable customers are labeled as noise (`-1`). In fact, it appears DBSCAN may have identified the least valuable customers in its estimated clusters. As mentioned before, customers labeled (`-1`) dominated customers in the other clusters over all metrics. 
 
 ![box_product](/report/clustering/prod_cols.jpg?raw=true "")
 
+
 ![box_orders](/report/clustering/Q_orders.jpg?raw=true "")
+
 
 ![box_sales](/report/clustering/Q_sales.jpg?raw=true "")
 
