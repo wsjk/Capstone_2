@@ -2,7 +2,8 @@
 <summary><h1>The Client</h1></summary>
 <p>
       
-The boom of e-commerce has resulted in online retailers servicing billions of customers <sup><a href = https://www.statista.com/statistics/251666/number-of-digital-buyers-worldwide/>[1]</a></sup>. Furthermore, it is also estimated that 96% of Americans shop online <sup><a href = http://www.cpcstrategy.com/blog/2017/05/ecommerce-statistics-infographic/>[2]</a></sup>. With so many options in the realm of online shopping, a major goal in e-commerce is customer retention. A common approach to achieving this is through specialized marketing techniques. It is not feasible, however, to develop marketing techniques specific to each individual customer. If the customer pool can be segmented into smaller groups, then the time required to develop effective marketing techniques can be reduced -- which is why it is important for companies to truly understand their customers.
+The boom of e-commerce has resulted in 96% of Americans shopping online <sup><a href = http://www.cpcstrategy.com/blog/2017/05/ecommerce-statistics-infographic/>[1]</a></sup> and 
+billions of customers worldwide<sup><a href = https://www.statista.com/statistics/251666/number-of-digital-buyers-worldwide/>[2]</a></sup>. With so many options in the realm of online shopping, a major goal in e-commerce is customer retention. A common approach to achieving this is through specialized marketing techniques. It is not feasible, however, to develop marketing techniques specific to each individual customer. If the customer pool can be segmented into smaller groups, then the time required to develop effective marketing techniques can be reduced -- which is why it is important for companies to truly understand their customers.
 
 </p>
 </details>
