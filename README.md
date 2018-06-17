@@ -3,7 +3,7 @@
 <p>
       
 The boom of e-commerce has resulted in 96% of Americans shopping online <sup><a href = http://www.cpcstrategy.com/blog/2017/05/ecommerce-statistics-infographic/>[1]</a></sup> and 
-billions of customers worldwide<sup><a href = https://www.statista.com/statistics/251666/number-of-digital-buyers-worldwide/>[2]</a></sup>. With so many options in the realm of online shopping, a major goal in e-commerce is customer retention. A common approach to achieving this is through specialized marketing techniques. It is not feasible, however, to develop marketing techniques specific to each individual customer. If the customer pool can be segmented into smaller groups, then the time required to develop effective marketing techniques can be reduced -- which is why it is important for companies to truly understand their customers.
+billions of customers worldwide<sup><a href = https://www.statista.com/statistics/251666/number-of-digital-buyers-worldwide/>[2]</a></sup>. With so many options in the realm of online shopping, a major goal in e-commerce is customer retention. A common approach to achieving this is through specialized marketing techniques. It is not feasible, however, to develop marketing techniques specific to each individual customer. If the customer pool can be segmented into smaller groups, then the time required to develop effective marketing techniques can be reduced -- which is why it is important for companies to understand their customer base and identify the most valuable ones.
 
 </p>
 </details>
@@ -12,7 +12,7 @@ billions of customers worldwide<sup><a href = https://www.statista.com/statistic
 <summary><h1>The Problem</h1></summary>
 <p>
   
-Online retailers have enormous customer pools and customers often share similar traits. There may be, however, a better way to identify customers than simply grouping them by their location. Customers are a source of revenue and it would be more advantageous to segment customers based on metrics that are associated with direct profit. 
+Online retailers have enormous customer pools and customers often share similar traits. There may be, however, a better way to identify customers than simply grouping them by their location or gender. Customers are a source of revenue and it would be more advantageous to segment customers based on metrics that are associated with profits. 
 
 How can we identify the *best* customers? 
 
@@ -22,6 +22,7 @@ How can we identify the *best* customers?
 <details>
 <summary><h1>The Data</h1></summary>
 <p>
+      
 Customer data has been obtained from an online retailer. The dataset is provided in the form of several tables obtained from a relational database. The primary key is the `customer_id`. The dataset only contains customer data prior to connection to an account manager. The following features are provided in the data:
 
 * Total sales per customer
@@ -98,9 +99,7 @@ The distribution of customer's in the sample per state is shown below:
 
 ![customer_state_distribution](/report/eda/customers_per_state.png?raw=True "")
 
-Majority of the customers in the dataset are located in `CA`, `CO`, `NY`, `UT`, `WA` and `TX`. Three of those states are ranked as the top 4 in the US Census Bureau's population ranking <sup><a href = https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population>[3]</a></sup>. It is interesting, however, to note that so many customers are also located in fairly low population states (`CO`,`UT`). 
-
-Any efforts regarding marketing techniques should be focused on the states where the company already has the most customers.
+Majority of the customers in the dataset are located in `CA`, `CO`, `NY`, `UT`, `WA` and `TX`. Three of those states are ranked as the top 4 in the US Census Bureau's population ranking <sup><a href = https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population>[3]</a></sup>. It is interesting, however, to note that so many customers are also located in fairly low population states (`CO`,`UT`). Customer location is not as important when it comes to digital marketing compared to other media (e.g. print ads, tv commercials, billboards). 
 
 </p>
 </details>
@@ -114,9 +113,9 @@ The overall distribution of customer sales per `product_type` is shown below:
 
 ![customer_pt_distribution](/report/eda/customer_distribution.png?raw=true "")
 
-The distribution shows that products from type `B` are the most expensive as very few customers have purchased from that category, but it has generated the most sales. Conversely, `A` and `F` products appear to be cheaper items due to the discrepancy from number of customers who have purhcased it and the sales generated.
+The distribution shows that products from type `B` are the most expensive as very few customers have purchased from that category, but it has generated the most sales. Conversely, `A` and `F` products appear to be cheaper items due to the discrepancy from number of customers who have purchased it and the sales generated.
 
-Marketing techniques should be focused on customers purchasing high cost items from `product_type`s such as `E`, `I`, `O`, `R` and `S`. 
+Marketing should be focused on customers purchasing high cost items from `product_type`s such as `E`, `I`, `O`, `R` and `S`. 
 
 Looking into the variety of products that customers from each state buy, a plot of the amount of unique `product_type`s purchased from customers in each state is shown below
 
@@ -164,7 +163,7 @@ A bubble chart showing the relationship between `product_type`, `state`, number 
 
 The color of the markers represent the number of unique customers that have purchased given a `product_type` and `state`. The size of the markers represent the average of the sales made by those same customers. 
 
-The bubble chart shows that the most popular `product_type`s -- based on number of customers who have purchased them -- are `A`,`F`,`K`,`Q`, and `T` for most locations. The most sales are generated from `product_type` `E` have across all almost states. 
+The bubble chart shows that the most popular `product_type`s -- based on number of customers who have purchased them -- are `A`,`F`,`K`,`Q`, and `T` for most locations. The most sales are generated from product type `E` across almost all states. 
 
 Specific `product_type`s are much popular in certain states than others. It appears that customers from military addresses (`AE`) have generated the  most sales for `D` type products. While customers in Guam (`GU`) have spent the most money on `C`, `D` and `B`. Products from `H` and `K` are quite popular among customers in the Northern Mariana Islands and Virgin Islands (`VI`) customers are fond of `Q` items.
 
@@ -321,7 +320,9 @@ The dataset was processed via pivoting to have each product type as a feature an
 
 K-Means was initially used to find clusters among the customer sample, but the structure of the dataset did not lend itself well to the algorithm. DBSCAN was chosen as an alternative approach to segment the customers. A grid search was conducted to tune the hyperparameters of DBSCAN and the optimal setup resulted in an estimate of 5 clusters -- the remaining points were considered noise.
 
-After analyzing the clusters, it appears that DBSCAN had identified the average customer (label `0`), the least valuable customers compared to the rest of the sample (remaining labels), and the very best customers (label `-1`). 
+After analyzing the clusters, it appears that DBSCAN had identified the average customer (label `0`), , the very best customers (label `-1`), and the least valuable customers compared to the rest of the sample (remaining labels). The fact that the best customers were considered noise by DBSCAN could be due to the sparseness of the data. The dataset was pivoted so each column represented sales from a single product type, sales from a single quarter, and orders from a single quarter. It is similar to one-hot encoding. On the other hand, it is also possible that the most valuable customers may order above average amounts of specific product types as opposed to evenly distributing their purchases. 
+
+Moving forward, some additional work towards feature engineering may help further segment the largest cluster (label `0`) as well as identify the points which are currently considered noise. Some additional features that may help include quarterly sales and orders per product type, front end stats (e.g. frequency of site visits, click data), and variations on customer location (e.g., distance from a competing brick & mortar store).
     
 </p>
 </details>
