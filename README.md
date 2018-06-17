@@ -293,7 +293,7 @@ Plotting average sales per product type, the clusters appear to identify with pr
 
 ![avg_prod_sales](/report/clustering/avg_prod_sales_clusters.png?raw=true "")
 
-Boxplots of the customer metrics (e.g., sales, orders, and sales by product type) are shown below. The y-axes have been normalized for the group of subplots within each metric. When looking at the boxplots for sales and orders for each cluster, it seems like the most valuable customers are labeled as noise (`-1`). In fact, it appears DBSCAN may have identified the least valuable customers in its estimated clusters. As mentioned before, customers labeled (`-1`) dominated customers in the other clusters over all metrics. 
+Boxplots of the customer metrics (e.g., sales, orders, and sales by product type) are shown below. The y-axes have been normalized for the group of subplots within each metric. When looking at the boxplots for sales and orders for each cluster, it seems like the most valuable customers are labeled as noise (`-1`). In fact, it appears DBSCAN may have identified the least valuable customers in its estimated clusters. As mentioned before, customers labeled (`-1`) dominated customers in the other clusters over all metrics and they are outliers in their value compared to the rest of the sample. Most of the customers are labeled `0` and they are considered the typical customer. The remaining clusters are differentiated from the group due to their focus on product types that aren't popular with the other customers in the sample.
 
 ![box_product](/report/clustering/prod_cols.jpg?raw=true "")
 
@@ -314,11 +314,13 @@ Boxplots of the customer metrics (e.g., sales, orders, and sales by product type
 <summary><h1>Conclusion</h1></summary>
 <p>
       
-Unsupervised techniques are applied to a dataset provided by an online retailer to conduct customer segmentation. The dataset contained a random sample of the companies customers. The original dataset contained total sales per quarter, total orders per quarter, and total sales per product type for each customer. Customer location was also available, but not included in the dataset. 
+Unsupervised techniques are applied to a dataset provided by an online retailer to conduct customer segmentation. The dataset contained a random sample of customers and their order history. The original dataset contained total sales per quarter, total orders per quarter, and total sales per product type for each customer. Customer location was also available, but not included in the feature set. 
 
 The dataset was processed via pivoting to have each product type as a feature and each quarter as a feature for both sales and orders. The pivoted dataset now had 29 features: 21 product types, 4 quarters for sales, and 4 quarters for orders.
 
-K-Means was initially used to find clusters among the customer sample, but the structure  of the dataset did not lend itself well to the algorithm. DBSCAN was chosen as an alternative approach to segment the customers. A grid search was conducted to tune the hyperparameters of DBSCAN and the optimal setup resulted in an estimate of 5 clusters -- the remaining points were considered noise.
+K-Means was initially used to find clusters among the customer sample, but the structure of the dataset did not lend itself well to the algorithm. DBSCAN was chosen as an alternative approach to segment the customers. A grid search was conducted to tune the hyperparameters of DBSCAN and the optimal setup resulted in an estimate of 5 clusters -- the remaining points were considered noise.
+
+After analyzing the clusters, it appears that DBSCAN had identified the average customer (label `0`), the least valuable customers compared to the rest of the sample (remaining labels), and the very best customers (label `-1`). 
     
 </p>
 </details>
