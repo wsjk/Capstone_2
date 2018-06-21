@@ -1,3 +1,5 @@
+<h1>Unsupervised Learning and Customer Segmentation</h1>
+
 <details>
 <summary><h1>The Client</h1></summary>
 <p>
